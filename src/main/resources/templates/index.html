@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome Page</title>
+  <!-- Link to your CSS files using Thymeleaf -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+</head>
+<body>
+
+<!-- Static content -->
+  <h1>Welcome to our website!</h1>
+  <h4><a th:href="@{/login}">Войти</a></h4>
+  <h4><a th:href="@{/registration}">Зарегистрироваться</a></h4>
+  <h4><a th:href="@{/logout}">Выйти</a></h4>
+  <h4><a th:href="@{/news}">Новости (только пользователь)</a></h4>
+
+</body>
+</html>

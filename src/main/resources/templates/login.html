@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome Page</title>
+  <!-- Link to your CSS files using Thymeleaf -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+</head>
+<body>
+
+<h1>User Login</h1>
+
+<form th:action="@{/login}" th:object="${userForm}" method="post">
+
+  <p>
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" />
+  </p>
+
+  <p>
+    <label for="pass">Password</label>
+    <input type="password" th:field="*{pass}" id="pass" />
+  </p>
+
+  <p>
+    <button type="submit">Login</button>
+  </p>
+
+</form>
+</body>
+</html>
