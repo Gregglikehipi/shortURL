@@ -44,11 +44,12 @@ public class SecurityConfiguration {
                         .requestMatchers("/").permitAll()// Allow access to the login page
                         .anyRequest().authenticated()) // Require authentication for all other requests
                         .formLogin((form) -> form
-                        .loginPage("/login") // Configure the login page URL
                         .defaultSuccessUrl("/")) // Redirect to the home page after successful login
                         .logout((logout) -> logout
                                 .logoutUrl("/logout") // Configure the logout URL
                         );
+
+
 
 
 
