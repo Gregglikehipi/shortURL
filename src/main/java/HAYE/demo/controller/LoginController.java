@@ -1,11 +1,17 @@
 package HAYE.demo.controller;
 
+import HAYE.demo.data.UserRegistration;
+import HAYE.demo.service.DBService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LoginController {
-
-    /*
 
     @Autowired
     private DBService dbService;
@@ -19,47 +25,10 @@ public class LoginController {
 
 
     @PostMapping("/login")
-    public String addUser(@ModelAttribute("userForm") UserRegistration userForm, BindingResult bindingResult) {
-
-
-       // Authentication authentication =
-               // new UsernamePasswordAuthenticationToken(userForm.getName(), userForm.getPass());
-
-        //Authentication result = authenticationManager.authenticate(authentication);
-       // SecurityContextHolder.getContext().setAuthentication(result);
-
-
-
-
-
-        if (bindingResult.hasErrors()) {
-            return "login";
-        }
-        if (!dbService.findUser(userForm)){
-            return "login";
-        }
-        System.out.print("Good");
-
+    public String addUser(BindingResult bindingResult) {
 
         return "redirect:/";
     }
 
-
-    /*
-    private void authenticateUserAndSetSession(Person user, HttpServletRequest request) {
-        String username = user.getName();
-        String password = user.getPass();
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-
-        // generate session if one doesn't exist
-        request.getSession();
-
-        token.setDetails(new WebAuthenticationDetails(request));
-        Authentication authenticatedUser = authenticationManager.authenticate(token);
-
-        SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
-    }
-
-     */
 
 }

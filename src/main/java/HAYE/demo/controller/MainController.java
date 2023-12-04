@@ -29,14 +29,6 @@ public class MainController {
     @GetMapping("/")
     public String menu(HttpServletRequest request, Principal principal) {
 
-        System.out.print(principal.getName());
-        var hii = userRepo.findAll().iterator();
-        while (hii.hasNext())
-        {
-            Person item = hii.next();
-            System.out.println(item.getName());
-            System.out.println(item.getId());
-        }
 
         /*
         var hii = userRepo.findAll().iterator();

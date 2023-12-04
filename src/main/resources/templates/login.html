@@ -10,16 +10,16 @@
 
 <h1>User Login</h1>
 
-<form th:action="@{/login}" th:object="${userForm}" method="post">
+<form th:action="@{/login}" method="post">
 
   <p>
-    <label for="name">Name</label>
-    <input type="text" th:field="*{name}" id="name" />
+    <label>Name</label>
+    <input type="text" name="username" placeholder="Username">
   </p>
 
   <p>
-    <label for="pass">Password</label>
-    <input type="password" th:field="*{pass}" id="pass" />
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Password">
   </p>
 
   <p>
