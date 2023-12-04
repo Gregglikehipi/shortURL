@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Url List</title>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Full Url</th>
+    <th>Short Url</th>
+    <th>Count</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="url : ${urls}">
+    <td th:text="${url.id}"></td>
+    <td th:text="${url.fullUrl}"></td>
+    <td th:text="${url.smallUrl}"></td>
+    <td th:text="${url.count}"></td>
+    <td th:text="${url.description}"></td>
+  </tr>
+  </tbody>
+</table>
+<form th:action="@{/myUrls}" method="post">
+  <label>Create new short URL</label>
+  <input type="text" name="fullUrl" placeholder="Enter a URL" />
+  <button type="submit">Submit</button>
+</form>
+<form th:action="@{/myUrls}" th:method="delete">
+  <label>Delete URL</label>
+  <input type="text" name="deleteId" placeholder="Enter a URL id" />
+  <button type="submit">Submit</button>
+</form>
+<form th:action="@{/myRedirect}" method="get">
+  <label>Check Redirects</label>
+  <input type="text" name="redirectId" placeholder="Enter a URL id" />
+  <button type="submit">Submit</button>
+</form>
+
+<form th:action="@{/myUrls}" th:method="put">
+  <label>Change description</label>
+  <input name="putId" placeholder="Enter a URL id" />
+  <input name="newDesc" placeholder="Enter new description" />
+  <button type="submit">Submit</button>
+
+</form>
+</body>
+</html>

@@ -4,7 +4,12 @@ import HAYE.demo.data.Person;
 import HAYE.demo.data.UserRegistration;
 import HAYE.demo.repos.UserRepo;
 import HAYE.demo.service.DBService;
+import HAYE.demo.spider.HttpUtils;
+import eu.bitwalker.useragentutils.UserAgent;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,14 +26,27 @@ public class MainController {
     @Autowired
     private UserRepo userRepo;
     @GetMapping("/")
-    public String registration() {
+    public String menu(HttpServletRequest request) {
+
         var hii = userRepo.findAll().iterator();
         while (hii.hasNext())
         {
             Person item = hii.next();
             System.out.println(item.getName());
+            System.out.println(item.getId());
         }
-        System.out.print("hi");
+        Person jack = new Person();
+        System.out.println(jack.getId());
+        Long id = Long.parseLong("00102");
+        System.out.println(id);
+        //dbService.DeleteUsers();
+        //dbService.DeleteUrl();
+        String ip = HttpUtils.getRequestIP(request);
+        System.out.println(ip);
+        System.out.println(request.getHeader("USER-AGENT"));
+        UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
+        System.out.println(userAgent.getBrowser().getName() + " " + userAgent.getBrowserVersion() + " " + userAgent.getOperatingSystem().getName());
+
         return "index";
     }
 

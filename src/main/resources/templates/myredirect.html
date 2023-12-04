@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Url List</title>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>Ip</th>
+    <th>Date</th>
+    <th>User Agent</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="red : ${reds}">
+    <td th:text="${red.ip}"></td>
+    <td th:text="${red.date}"></td>
+    <td th:text="${red.user_agent}"></td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+
+</body>
+</html>
