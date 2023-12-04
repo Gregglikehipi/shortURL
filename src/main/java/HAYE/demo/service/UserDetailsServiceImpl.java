@@ -18,20 +18,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-
-        var hii = userRepo.findAll().iterator();
-        while (hii.hasNext())
+        var users = userRepo.findAll().iterator();
+        while (users.hasNext())
         {
-            Person item = hii.next();
-            System.out.println(item.getName());
-            System.out.println(item.getId());
-        }
-
-        if ("Gregg".equals(username)) {
-            return User.withUsername(username)
-                    .password("{noop}123")
-                    .roles("USER")
-                    .build();
+            Person item = users.next();
+            if (item.getName().equals(username)) {
+                return User.withUsername(username)
+                        .password("{noop}" + item.getPass())
+                        .roles("USER")
+                        .build();
+            }
         }
 
         throw new UsernameNotFoundException("User not found with username: " + username);

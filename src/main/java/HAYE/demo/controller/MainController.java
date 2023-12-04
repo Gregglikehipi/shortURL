@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -26,8 +27,18 @@ public class MainController {
     @Autowired
     private UserRepo userRepo;
     @GetMapping("/")
-    public String menu(HttpServletRequest request) {
+    public String menu(HttpServletRequest request, Principal principal) {
 
+        System.out.print(principal.getName());
+        var hii = userRepo.findAll().iterator();
+        while (hii.hasNext())
+        {
+            Person item = hii.next();
+            System.out.println(item.getName());
+            System.out.println(item.getId());
+        }
+
+        /*
         var hii = userRepo.findAll().iterator();
         while (hii.hasNext())
         {
@@ -37,8 +48,6 @@ public class MainController {
         }
         Person jack = new Person();
         System.out.println(jack.getId());
-        Long id = Long.parseLong("00102");
-        System.out.println(id);
         //dbService.DeleteUsers();
         //dbService.DeleteUrl();
         String ip = HttpUtils.getRequestIP(request);
@@ -46,7 +55,7 @@ public class MainController {
         System.out.println(request.getHeader("USER-AGENT"));
         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
         System.out.println(userAgent.getBrowser().getName() + " " + userAgent.getBrowserVersion() + " " + userAgent.getOperatingSystem().getName());
-
+        */
         return "index";
     }
 

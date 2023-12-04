@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,46 +25,46 @@ public class MyUrlController {
     private UrlRepo urlRepo;
 
     @GetMapping("/myUrls")
-    public String viewUrls(Model model) {
-        List<Url> urlUser = dbService.getUserUrl("Gregg");
+    public String viewUrls(Model model, Principal principal) {
+        List<Url> urlUser = dbService.getUserUrl(principal.getName());
         model.addAttribute("urls", urlUser);
 
         return "myurl";
     }
 
     @PutMapping("/myUrls")
-    public String urlChange(Model model, @ModelAttribute("putId") String urlId, @ModelAttribute("newDesc") String newDesc) {
+    public String urlChange(Model model, @ModelAttribute("putId") String urlId, @ModelAttribute("newDesc") String newDesc, Principal principal) {
         Optional<Url> url = urlRepo.findById(Long.parseLong(urlId));
         Url newUrl = url.get();
         newUrl.setDescription(newDesc);
         urlRepo.save(newUrl);
 
-        List<Url> urlUser = dbService.getUserUrl("Gregg");
+        List<Url> urlUser = dbService.getUserUrl(principal.getName());
         model.addAttribute("urls", urlUser);
         return "myurl";
     }
 
     @PostMapping("/myUrls")
-    public String addUrl(@ModelAttribute("fullUrl") String fullUrl, Model model) {
+    public String addUrl(@ModelAttribute("fullUrl") String fullUrl, Model model, Principal principal) {
         Url newUrl = new Url();
         newUrl.setCount(0);
         newUrl.setFullUrl(fullUrl);
         urlRepo.save(newUrl);
         Url newNewUrl = dbService.findUrl(fullUrl);
-        newNewUrl.setUserName("Gregg");
+        newNewUrl.setUserName(principal.getName());
         newNewUrl.setSmallUrl(Convert.intToShort(newNewUrl.getId()));
         urlRepo.save(newNewUrl);
-        List<Url> urlUser = dbService.getUserUrl("Gregg");
+        List<Url> urlUser = dbService.getUserUrl(principal.getName());
         model.addAttribute("urls", urlUser);
 
         return "myurl";
     }
 
     @DeleteMapping("/myUrls")
-    public String deleteUrl(@ModelAttribute("deleteId") String deleteId, Model model) {
+    public String deleteUrl(@ModelAttribute("deleteId") String deleteId, Model model, Principal principal) {
         System.out.println("Hi chat!");
         urlRepo.deleteById(Long.parseLong(deleteId));
-        List<Url> urlUser = dbService.getUserUrl("Gregg");
+        List<Url> urlUser = dbService.getUserUrl(principal.getName());
         model.addAttribute("urls", urlUser);
         return "myurl";
     }
