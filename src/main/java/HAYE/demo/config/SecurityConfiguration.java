@@ -41,6 +41,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/registration").permitAll()
                         .requestMatchers("/red/*").permitAll()
+                        .requestMatchers("/css/**", "/image/**").permitAll()
                         .requestMatchers("/").permitAll()// Allow access to the login page
                         .anyRequest().authenticated()) // Require authentication for all other requests
                         .formLogin((form) -> form
