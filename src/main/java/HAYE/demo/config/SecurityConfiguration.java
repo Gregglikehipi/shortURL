@@ -32,7 +32,7 @@ public class SecurityConfiguration {
     }
     */
 
-/*
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -52,10 +52,10 @@ public class SecurityConfiguration {
 
 
 
-
+        return http.build();
 
     }
-     */
+
 
 
     /*
