@@ -41,6 +41,7 @@ public class SecurityConfiguration {
         return http.build();
     }
 
+    /*
     @Bean
     public AuthenticationManager authenticationManager() throws Exception {
         return authentication -> {
@@ -55,5 +56,7 @@ public class SecurityConfiguration {
             throw new BadCredentialsException("Invalid username/password");
         };
     }
+
+     */
 
 }

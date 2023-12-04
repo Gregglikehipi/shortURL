@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class LoginController {
 
-    @Autowired
-    protected AuthenticationManager authenticationManager;
 
     @Autowired
     private DBService dbService;
@@ -46,7 +44,7 @@ public class LoginController {
         SecurityContextHolder.getContext().setAuthentication(result);
         */
 
-        /*
+
 
 
         if (bindingResult.hasErrors()) {
@@ -57,10 +55,11 @@ public class LoginController {
         }
         System.out.print("Good");
 
-         */
+
         return "redirect:/";
     }
 
+    /*
     private void authenticateUserAndSetSession(Person user, HttpServletRequest request) {
         String username = user.getName();
         String password = user.getPass();
@@ -74,5 +73,7 @@ public class LoginController {
 
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
     }
+
+     */
 
 }

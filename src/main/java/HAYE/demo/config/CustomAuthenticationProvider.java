@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+public class CustomAuthenticationProvider {
+
+}
+/*
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Override
@@ -31,6 +35,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     }
 
 }
+
+ */
 
 /*
 @Component
